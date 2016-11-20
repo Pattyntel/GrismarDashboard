@@ -147,6 +147,26 @@ function minimalizaSidebar($timeout) {
     };
 }
 
+function dropDown($filter){
+    return{
+        restrict:'E',
+        scope:{
+            itemsData: '=',
+            item: '=',
+            sizeStyle:'@',
+            action:'&'            
+        },
+        templateUrl:'views/common/drop_down.html',
+        controller: function($scope, $element, $filter){
+            $scope.clickItem = function (selectedOption){
+              //  console.log (selectedOption);
+                $scope.item = $filter('filter')($scope.itemsData, {description:selectedOption})[0];
+               // console.log($scope.item);
+              //  $scope.rowSelectedText = '';        
+            };
+        }
+    }
+}
 
 /**
  *
@@ -158,4 +178,6 @@ angular
     .directive('sideNavigation', sideNavigation)
     .directive('iboxTools', iboxTools)
     .directive('minimalizaSidebar', minimalizaSidebar)
-    .directive('iboxToolsFullScreen', iboxToolsFullScreen);
+    .directive('iboxToolsFullScreen', iboxToolsFullScreen)
+    .directive('dropDown', dropDown);
+    

@@ -11,15 +11,25 @@
             </div>
         </div>
     </div>
+
+    <div ng-controller="ProdByClasificacionCtrl">
+        <drop-down items-data="prodItems"
+                    item="prodItem"
+                    size-style="lg"
+                    action="callBackService()">
+        </drop-down>
+    </div>
+
+
     <div class="row">
         <div class="col-lg-12">
-            <select class="js-example-basic-multiple" multiple="multiple" style="width:100%">
+         <!--   <select class="js-example-basic-multiple" multiple="multiple" style="width:100%">
                 <option value="AL">Alabama</option>            
                 <option value="WY">Wyoming</option>
             </select>
             <select class="js-data-example-ajax" multiple="multiple" style="width:100%">
                 <option value="3620194" selected="selected">select2/select2</option>
-            </select>
+            </select>-->
             
         </div>
     </div>
@@ -31,14 +41,15 @@ $(".js-example-basic-multiple").select2();
 
 
 <script type="text/javascript">    
+//url: "http://192.168.0.10/DWH.Grismar/v1/Dashboard/GetCatalogSimpleRegionByEstado",
+
     $(".js-data-example-ajax").select2({
         ajax: {
-            url: "localhost/DWH.Grismar/v1/Dashboard/GetCatalogSimpleRegionByEstado",
-            //url: "http://192.168.0.10/DWH.Grismar/v1/Dashboard/GetCatalogSimpleRegionByEstado",
+            url: "http://192.168.0.101/dwh.Grismar/v1/Dashboard/GetCatalogSimpleRegionByEstado", 
             dataType: 'json',            
             data: function (params) {
-                console.log()params;
-                params.page = params.page || 1;
+                //console.log(params);
+                params.page = params.page || 0;
                 return {
                     startIndex: params.page,
                     pageSize: 10,
@@ -52,7 +63,7 @@ $(".js-example-basic-multiple").select2();
                 // since we are using custom formatting functions we do not need to
                 // alter the remote JSON data, except to indicate that infinite
                 // scrolling can be used
-                params.page = params.page || 1;
+                params.page = params.page || 0;
 
                 return {
                     results: data.listItems,

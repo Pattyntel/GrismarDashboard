@@ -1,0 +1,19 @@
+<div class="btn-group" uib-dropdown>
+    <button type="button" class="btn btn-default {{sizeStyle}}" uib-dropdown-toggle>
+        <strong>
+            <span class="text-muted hidden-xs">{{item.description}}</span>
+            <span class="caret"></span>
+        </strong>
+    </button>
+    <ul role="menu" uib-dropdown-menu="">
+        <li ng-repeat="item in itemsData">
+            <a ng-click="clickItem(item.description); action()">{{item.description}}</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a href="">
+                <i class="fa fa-power-off"></i>Cerrar
+            </a>
+        </li>
+    </ul>
+</div>

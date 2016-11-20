@@ -1,19 +1,28 @@
-var urlBase = 'http://192.168.0.10/DWH.Grismar/v1/Dashboard/';
+var urlBase = 'http://192.168.0.101/DWH.Grismar/v1/Dashboard/';
 
 function APIServices($http){
     var objAPI =
     {
-        getVentas_ProdByClasif: function (anio)
+        getVentasByCategory: function (anio)
         {
-            return $http.get(urlBase + 'GetVentas_ProdByClasif' + anio).sucess(function(dataResult){
+            return $http.get(urlBase + 'GetVentasByCategory' + anio).success(function(dataResult){
                 return dataResult;
             }).error(function(err){
-                console.log(error);
+                console.log(err);
             });
         },
-        otroMetodo: function()
+        getVentas_ProdByClasif: function()
         {
 
+            var url2=urlBase + 'GetVentas_ProdByClasif';
+            console.log(url2);
+
+            return $http.get(url2).success(function(dataResult){
+                debugger;
+                return dataResult;
+            }).error(function(err){
+                console.log(err);
+            });
         }
     }
     return objAPI;
