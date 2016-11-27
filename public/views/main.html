@@ -12,20 +12,26 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-12">
-            <!--<select class="js-example-basic-multiple" multiple="multiple" style="width:100%">
-                <option value="AL">Alabama</option>            
-                <option value="WY">Wyoming</option>
-            </select>-->
 
-           <select class="js-data-example-ajax" multiple="multiple" style="width:100%">
-            </select>-->
 
+
+
+    <div class="row">        
+        <div class="col-lg-4">
+             <div class="switch">
+                <div class="onoffswitch">
+                    <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example">
+                    <label class="onoffswitch-label" for="example">
+                        <span class="onoffswitch-inner"></span>
+                        <span class="onoffswitch-switch"></span>
+                    </label>
+                </div>
+            </div>
+        </div>    
+        <div class="col-lg-8">
             <select id="filtroProducto" multiple="multiple" style="width:100%">              
-            </select>
-            
-        </div>
+            </select>            
+        </div>  
     </div>
 
 <!--    <div class="row">
@@ -122,40 +128,42 @@
             </div>
         </div>
     </div>
-</div>-->
-
-   
-    
+</div>-->    
 </div>
-
-<!-- Dos datos -->
-<script type="text/javascript">
-$(".js-example-basic-multiple").select2();
+<script type="text/javascript"> 
+$("#example").on( 'change', function() {
+    if( $(this).is(':checked') ) {
+        // Hacer algo si el checkbox ha sido seleccionado
+        //alert("El checkbox con valor " + $(this).val() + " ha sido seleccionado");
+        filterData.exception= true;
+    } else {
+        // Hacer algo si el checkbox ha sido deseleccionado
+       // alert("El checkbox con valor " + $(this).val() + " ha sido deseleccionado");
+        filterData.exception= false;
+    }
+});
 </script>
 
-
-<!-- Datos del Servicio de Estados no funciona-->
+<!-- Datos del Servicio de Estados si funciona-->
 <script type="text/javascript">    
-var urlBase ="http://192.168.60.102/dwh.Grismar/v1/Dashboard/";
-    $(".js-data-example-ajax").select2({
+var urlBase ="http://192.168.0.101/dwh.Grismar/v1/Dashboard/";
+    $("#filtroProducto").select2({
         placeholder:"Estados",
         multiple: true,
         ajax: {
-            url: "http://192.168.60.102/dwh.Grismar/v1/Dashboard/GetCatalogSimpleRegionByEstado", 
+            url: urlBase +"GetCatalogSimpleRegionByEstado", 
             dataType: 'json',            
             data: function (params) {
                 //console.log(params);
-                params.page = params.page || 1;
+                params.page = params.page || 0;
                 return {
                     startIndex: params.page,
                     pageSize: 10,
-                    criterio: params.term
-                    //q: params.term, // search term
-                    //page: params.page
+                    criterio: params.term                   
                 };
             },
             processResults: function (data, params) {                
-                params.page = params.page || 1;
+                params.page = params.page || 0;
 
                 return {
                     results: data.listItems,
@@ -170,7 +178,53 @@ var urlBase ="http://192.168.60.102/dwh.Grismar/v1/Dashboard/";
         minimumInputLength: 1,
         templateResult: template, // omitted for brevity, see the source of this page
         templateSelection: selection // omitted for brevity, see the source of this page
+    }).on("change", function(){
+    //console.log('Hola');
+    //console.log($('#filtroProducto').select2('data'));
+    console.log($('#filtroProducto').val());
+
+    var filterData = {
+       value:"",
+       filter:"",
+       exception: false 
+    };
+
+    filterData.value = "[Dim Regiones].[Dim Estado Reg].";
+
+    $.each($('#filtroProducto').val(), function(index,value){
+        console.log("Value:")
+        console.log(value);        
+        filterData.filter += value + '|';       
     });
+
+ /*   $.each($('#filtroProducto').val(), function(index,item){
+        console.log(item.description);        
+        filterData.filter += item.description + '|';       
+    });*/
+
+    if( $('#example').prop('checked') ) {
+        filterData.exception= true;
+    }
+    else
+    {
+        filterData.exception= false;
+    }
+
+    console.log("FilterData");
+    console.log(filterData);
+
+    $.ajax({
+        url: urlBase + "GetSummaryVentasCategoriasProdByEstado",
+        type:"post",
+        dataType:"json",
+
+        data: filterData,
+        success: function(result){
+            console.log(result);
+        }
+    });
+});
+
 
     function template(data){
         return data.description;
@@ -182,126 +236,3 @@ var urlBase ="http://192.168.60.102/dwh.Grismar/v1/Dashboard/";
 </script>
 
 
-
-<!-- Api github si funciona-->
-<script type="text/javascript">  
-var urlBase = "";
-
-$("#filtroProducto").select2({ 
-    placeholder:"Api de github",
-    //multiple:false,
-  ajax: {
-    url: "https://api.github.com/search/repositories",
-    dataType: 'json',
-    data: function (params) {
-      return {
-        q: params.term, // search term
-        page: params.page
-      };
-    },
-    processResults: function (data, params) {
-      // parse the results into the format expected by Select2
-      // since we are using custom formatting functions we do not need to
-      // alter the remote JSON data, except to indicate that infinite
-      // scrolling can be used
-      params.page = params.page || 1;
-
-      return {
-        results: data.items,
-        pagination: {
-          more: (params.page * 30) < data.total_count
-        }
-      };
-    },
-    cache: true
-  },
-  escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
-  minimumInputLength: 1,
-  templateResult: formatRepo, // omitted for brevity, see the source of this page
-  templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
-}).on("change", function(){
-    console.log('Hola');
-    console.log($('#filtroProducto').select2('data'));
-    //console.lgo($('#filtroProducto').val());
-
-    var filterData = {
-       value:"",
-       filter:"",
-       exception: false 
-    };
-
-    $.each($('#filtroProducto').select2('data'), function(index,item){
-        console.log(item.full_name);
-        //console.log(item.description);
-        filterData.filter += item.full_name + '|';
-        //filterData.filter += item.description + '|';
-    });
-
-    console.log(filterData);
-
-    $.ajax({
-        url:"",
-        type:"post",
-        dataType:"json",
-        data: filterData,
-        success: function(result){
-            console.log(result);
-        }
-    });
-});
-
-
-function formatRepo(data){
-    return data.full_name;
-}
-
-function formatRepoSelection(data){
-    return data.full_name;
-}
-</script>
-
-<!-- otra prueba no funciona
-<script type="text/javascript">  
-$(".js-data-example-ajax0").select2({ 
-    placeholder:"Edo 1",
-    //multiple:false,
-  ajax: {
-    url: "http://192.168.0.101/dwh.Grismar/v1/Dashboard/GetCatalogSimpleRegionByEstado",
-    dataType: 'json',
-    data: function (params) {
-      params.page = params.page || 1;        
-      return {
-          startIndex: 1,
-          pageSize: 10,
-          criterio: 'g' // search term
-      };
-    },
-    processResults: function (data, params) {
-      // parse the results into the format expected by Select2
-      // since we are using custom formatting functions we do not need to
-      // alter the remote JSON data, except to indicate that infinite
-      // scrolling can be used
-      params.page = params.page || 1;
-
-      return {
-        results: data.listItems,
-        pagination: {
-          more: (params.page * 30) < data.totalRecords
-        }
-      };
-    },
-    cache: true
-  },
-  escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
-  minimumInputLength: 1,
-  templateResult: formatRepo2, // omitted for brevity, see the source of this page
-  templateSelection: formatRepoSelection2 // omitted for brevity, see the source of this page
-});
-function formatRepo2(data){
-    return data.description;
-}
-
-function formatRepoSelection2(data){
-    return data.description;
-}
-</script>-->
