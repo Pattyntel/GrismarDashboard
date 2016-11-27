@@ -11,129 +11,141 @@
             </div>
         </div>
     </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="tabs-container">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#tab-1"> Productos</a></li>
-                            <li class=""><a data-toggle="tab" href="#tab-2">Agentes</a></li>
-<!--                            <li class=""><a data-toggle="tab" href="#tab-3">Clientes</a></li>
-                            <li class=""><a data-toggle="tab" href="#tab-4">Periodos</a></li>
-                            <li class=""><a data-toggle="tab" href="#tab-5">Regiones</a></li>
-    -->                    </ul>
-                        <div class="tab-content">
-                            <div id="tab-1" class="tab-pane active">
-                                <div class="panel-body">
-                                    <strong>Mostrar Por:</strong>
-                                    <div ng-controller="ProductosCtrl">
-                                            <drop-down items-data="prodItems"
-                                                        item="prodItem"
-                                                        size-style="lg"
-                                                        action="callBackService()">
-                                            </drop-down>
-                                         <!--   <div ng-repeat = "item in variable">
-                                                <ul>
-                                                    <li>{{item.dimProducto.clasificacionProd.value}} - 
-                                                    {{item.measures.indicadores.cantidadVentas}} -
-                                                    {{(item.measures.indicadores.porcentajeCantidadVentas)*100 | number:2 }}%  -
-                                                    ${{item.measures.indicadores.importeVentas | number:2}} - 
-                                                    {{(item.measures.indicadores.porcentajeImporteVentas)*100 | number:2}}%
-                                                    </li>
-                                                    <li>
-                                                        {{item |json}}
-                                                    </li>
-                                                </ul>
-                                            </div>
 
-                                            datosJson = {{variable |json}}-->
-                                                                               
-                                        <div custom-data-tables datos="variable">
-                                        </div>    
-                                    </div> 
-                                </div>
-                            </div>
-                            <div id="tab-2" class="tab-pane">
-                                <div class="panel-body">
-                                    <strong>Agentes</strong>
-
-                                    <p>Thousand unknown plants are noticed by me: when I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms of the insects
-                                        and flies, then I feel the presence of the Almighty, who formed us in his own image, and the breath </p>
-
-                                    <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite
-                                        sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at the present moment; and yet.</p>
-                                </div>
-                            </div>
-<!--                            <div id="tab-3" class="tab-pane active">
-                                <div class="panel-body">
-                                    <strong>Clientes</strong>
-
-                                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of
-                                        existence in this spot, which was created for the bliss of souls like mine.</p>
-
-                                    <p>I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at
-                                        the present moment; and yet I feel that I never was a greater artist than now. When.</p>
-                                </div>
-                            </div>
-                            <div id="tab-4" class="tab-pane active">
-                                <div class="panel-body">
-                                    <strong>Periodos</strong>
-
-                                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of
-                                        existence in this spot, which was created for the bliss of souls like mine.</p>
-
-                                    <p>I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at
-                                        the present moment; and yet I feel that I never was a greater artist than now. When.</p>
-                                </div>
-                            </div>
-                            <div id="tab-5" class="tab-pane active">
-                                <div class="panel-body">
-                                    <strong>Regiones</strong>
-
-                                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of
-                                        existence in this spot, which was created for the bliss of souls like mine.</p>
-
-                                    <p>I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at
-                                        the present moment; and yet I feel that I never was a greater artist than now. When.</p>
-                                </div>
-                            </div>
-                        </div>
-
--->
-                    </div>
-                </div>
-            </div>
-</div>
-
-   
     <div class="row">
         <div class="col-lg-12">
-         <!--   <select class="js-example-basic-multiple" multiple="multiple" style="width:100%">
+            <!--<select class="js-example-basic-multiple" multiple="multiple" style="width:100%">
                 <option value="AL">Alabama</option>            
                 <option value="WY">Wyoming</option>
-            </select>
-            <select class="js-data-example-ajax" multiple="multiple" style="width:100%">
-                <option value="3620194" selected="selected">select2/select2</option>
             </select>-->
+
+           <select class="js-data-example-ajax" multiple="multiple" style="width:100%">
+            </select>-->
+
+            <select id="filtroProducto" multiple="multiple" style="width:100%">              
+            </select>
             
         </div>
     </div>
+
+<!--    <div class="row">
+        <div class="col-lg-12">
+            <div class="tabs-container">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#tab-1"> Productos</a></li>
+                    <li class=""><a data-toggle="tab" href="#tab-2">Agentes</a></li>
+                           <li class=""><a data-toggle="tab" href="#tab-3">Clientes</a></li>
+                    <li class=""><a data-toggle="tab" href="#tab-4">Periodos</a></li>
+                    <li class=""><a data-toggle="tab" href="#tab-5">Regiones</a></li>
+                    </ul>
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane active">
+                        <div class="panel-body">
+                            <strong>Mostrar Por:</strong>
+                            <div ng-controller="ProductosCtrl">
+                                    <drop-down items-data="prodItems"
+                                                item="prodItem"
+                                                size-style="lg"
+                                                action="callBackService()">
+                                    </drop-down>
+                                    <div ng-repeat = "item in variable">
+                                        <ul>
+                                            <li>
+                                            {{item.dimProducto.clasificacionProd.value}} - 
+                                            {{item.measures.indicadores.cantidadVentas}} -
+                                            {{(item.measures.indicadores.porcentajeCantidadVentas)*100 | number:2}}%  -
+                                            ${{item.measures.indicadores.importeVentas | number:2}} - 
+                                            {{(item.measures.indicadores.porcentajeImporteVentas)*100 | number:2}}%
+                                            </li>
+                                            <li>
+                                                {{item |json}}
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                      datosJson = {{variable |json}}
+                                                                        
+                                <div custom-data-tables datos="variable">
+                                </div>    
+                            </div> 
+                           <div ng-include="'views/common/table_data_tables.html'">
+                            </div> 
+                        </div>
+                    </div>
+                    <div id="tab-2" class="tab-pane">
+                        <div class="panel-body">
+                            <strong>Agentes</strong>
+
+                            <p>Thousand unknown plants are noticed by me: when I hear the buzz of the little world among the stalks, and grow familiar with the countless indescribable forms of the insects
+                                and flies, then I feel the presence of the Almighty, who formed us in his own image, and the breath </p>
+
+                            <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the exquisite
+                                sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at the present moment; and yet.</p>
+                        </div>
+                    </div>
+                           <div id="tab-3" class="tab-pane active">
+                        <div class="panel-body">
+                            <strong>Clientes</strong>
+
+                            <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of
+                                existence in this spot, which was created for the bliss of souls like mine.</p>
+
+                            <p>I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at
+                                the present moment; and yet I feel that I never was a greater artist than now. When.</p>
+                        </div>
+                    </div>
+                    <div id="tab-4" class="tab-pane active">
+                        <div class="panel-body">
+                            <strong>Periodos</strong>
+
+                            <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of
+                                existence in this spot, which was created for the bliss of souls like mine.</p>
+
+                            <p>I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at
+                                the present moment; and yet I feel that I never was a greater artist than now. When.</p>
+                        </div>
+                    </div>
+                    <div id="tab-5" class="tab-pane active">
+                        <div class="panel-body">
+                            <strong>Regiones</strong>
+
+                            <p>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of
+                                existence in this spot, which was created for the bliss of souls like mine.</p>
+
+                            <p>I am so happy, my dear friend, so absorbed in the exquisite sense of mere tranquil existence, that I neglect my talents. I should be incapable of drawing a single stroke at
+                                the present moment; and yet I feel that I never was a greater artist than now. When.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>-->
+
+   
+    
 </div>
 
+<!-- Dos datos -->
 <script type="text/javascript">
 $(".js-example-basic-multiple").select2();
 </script>
 
 
+<!-- Datos del Servicio de Estados no funciona-->
 <script type="text/javascript">    
-//url: "http://192.168.0.10/DWH.Grismar/v1/Dashboard/GetCatalogSimpleRegionByEstado",
-
+var urlBase ="http://192.168.60.102/dwh.Grismar/v1/Dashboard/";
     $(".js-data-example-ajax").select2({
+        placeholder:"Estados",
+        multiple: true,
         ajax: {
-            url: "http://192.168.0.101/dwh.Grismar/v1/Dashboard/GetCatalogSimpleRegionByEstado", 
+            url: "http://192.168.60.102/dwh.Grismar/v1/Dashboard/GetCatalogSimpleRegionByEstado", 
             dataType: 'json',            
             data: function (params) {
                 //console.log(params);
-                params.page = params.page || 0;
+                params.page = params.page || 1;
                 return {
                     startIndex: params.page,
                     pageSize: 10,
@@ -142,12 +154,8 @@ $(".js-example-basic-multiple").select2();
                     //page: params.page
                 };
             },
-            processResults: function (data, params) {
-                // parse the results into the format expected by Select2
-                // since we are using custom formatting functions we do not need to
-                // alter the remote JSON data, except to indicate that infinite
-                // scrolling can be used
-                params.page = params.page || 0;
+            processResults: function (data, params) {                
+                params.page = params.page || 1;
 
                 return {
                     results: data.listItems,
@@ -173,9 +181,15 @@ $(".js-example-basic-multiple").select2();
     }
 </script>
 
-<!--<script type="text/javascript">  
-$(".js-data-example-ajax").select2({
-    
+
+
+<!-- Api github si funciona-->
+<script type="text/javascript">  
+var urlBase = "";
+
+$("#filtroProducto").select2({ 
+    placeholder:"Api de github",
+    //multiple:false,
   ajax: {
     url: "https://api.github.com/search/repositories",
     dataType: 'json',
@@ -203,14 +217,91 @@ $(".js-data-example-ajax").select2({
   },
   escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
   minimumInputLength: 1,
-  templateResult: template, // omitted for brevity, see the source of this page
-  templateSelection: selection // omitted for brevity, see the source of this page
+  templateResult: formatRepo, // omitted for brevity, see the source of this page
+  templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+}).on("change", function(){
+    console.log('Hola');
+    console.log($('#filtroProducto').select2('data'));
+    //console.lgo($('#filtroProducto').val());
+
+    var filterData = {
+       value:"",
+       filter:"",
+       exception: false 
+    };
+
+    $.each($('#filtroProducto').select2('data'), function(index,item){
+        console.log(item.full_name);
+        //console.log(item.description);
+        filterData.filter += item.full_name + '|';
+        //filterData.filter += item.description + '|';
+    });
+
+    console.log(filterData);
+
+    $.ajax({
+        url:"",
+        type:"post",
+        dataType:"json",
+        data: filterData,
+        success: function(result){
+            console.log(result);
+        }
+    });
 });
-function template(data){
+
+
+function formatRepo(data){
     return data.full_name;
 }
 
-function selection(data){
+function formatRepoSelection(data){
     return data.full_name;
+}
+</script>
+
+<!-- otra prueba no funciona
+<script type="text/javascript">  
+$(".js-data-example-ajax0").select2({ 
+    placeholder:"Edo 1",
+    //multiple:false,
+  ajax: {
+    url: "http://192.168.0.101/dwh.Grismar/v1/Dashboard/GetCatalogSimpleRegionByEstado",
+    dataType: 'json',
+    data: function (params) {
+      params.page = params.page || 1;        
+      return {
+          startIndex: 1,
+          pageSize: 10,
+          criterio: 'g' // search term
+      };
+    },
+    processResults: function (data, params) {
+      // parse the results into the format expected by Select2
+      // since we are using custom formatting functions we do not need to
+      // alter the remote JSON data, except to indicate that infinite
+      // scrolling can be used
+      params.page = params.page || 1;
+
+      return {
+        results: data.listItems,
+        pagination: {
+          more: (params.page * 30) < data.totalRecords
+        }
+      };
+    },
+    cache: true
+  },
+  escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+  minimumInputLength: 1,
+  templateResult: formatRepo2, // omitted for brevity, see the source of this page
+  templateSelection: formatRepoSelection2 // omitted for brevity, see the source of this page
+});
+function formatRepo2(data){
+    return data.description;
+}
+
+function formatRepoSelection2(data){
+    return data.description;
 }
 </script>-->

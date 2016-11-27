@@ -140,8 +140,8 @@ function ProductosCtrl($scope, $filter, $timeout, APIServices){
         id:1, description:'Clasificación'
     };
 
-   //    $scope.variable = {};
-     $scope.variable = [];
+    $scope.variable = {};
+//    $scope.variable = [];
 
     /*CallBack Services */
     $scope.callBackService = function(){       
@@ -153,6 +153,7 @@ function ProductosCtrl($scope, $filter, $timeout, APIServices){
  //                       $scope.variable = dataResult;
  //                       $scope.variable = dataResult.data;
                         $scope.variable = JSON.stringify(dataResult.data);
+ //                        $scope.variable = JSON.stringify(dataResult);
                         console.log("$scope.variable");
                         console.log($scope.variable);
 

@@ -48,13 +48,13 @@ function customDataTables(){
                 columns:[
 
                     
-                    {data:"clasificacionProducto", title:"Clasificación"},
- //                                      {data:"mesuares", title:"Clasificación"},
-                    {data:"cantidadVentas",title: "Cantidad"},
-                    {data:"porcentajeCantidadVentas",title: "% Cantidad"},
-                    {data:"importeVentas",title: "Importe"},
-                        {data:"porcentajeImporteVentas",title: "% Importe "},   
-                    {data: function(source, type, val)
+                    {dimProducto:"clasificacionProducto.Value", title:"Clasificación"},
+ //                                      {data:"measures", title:"Clasificación"},
+                    {measures:"indicadores.cantidadVentas",title: "Cantidad"},
+                    {measures:"porcentajeCantidadVentas",title: "% Cantidad"},
+                    {measures:"importeVentas",title: "Importe"},
+                    {measures:"porcentajeImporteVentas",title: "% Importe "}   
+ /*                   ,{data: function(source, type, val)
                         {
                             source.render = source.indicador;
  //                           source.render = source.porcentajeImporteVentas;
@@ -63,7 +63,7 @@ function customDataTables(){
                         class: "text-center",
                         title: "Porcentaje Importe Ventas",
                         width: "20%"
-                    },
+                    },*/
                 ]
             });
         //    debugger;
